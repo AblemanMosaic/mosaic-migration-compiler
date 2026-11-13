@@ -1,0 +1,67 @@
+name: public-source-ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  public-source:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: ../mmc-ci-venv/bin/python3.12
+          - os: windows-latest
+            python: ../mmc-ci-venv/Scripts/python.exe
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Create non-symlinked test environment
+        run: python -m venv --copies ../mmc-ci-venv
+      - name: Install MMC qualification profile
+        run: ${{ matrix.python }} -m pip install ".[qualification]"
+      - name: Parse all Python source
+        run: ${{ matrix.python }} -m compileall -q src tools tools_t2 tools_t3 tools_t4 tools_t5 tools_t6 tools_t7 tests tests_t2 tests_t3 tests_t4 tests_t5 tests_t6 tests_t7
+      - name: Verify public projection
+        run: ${{ matrix.python }} -B tools_t7/publication_projection.py --require-git
+      - name: Run public self-contained product tests
+        run: ${{ matrix.python }} -B tools_t7/test_runner.py --lane public-ci --self-pin --out ../mmc-ci-results
+
+  installed-wheel:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build and qualify the installed wheel outside the checkout
+        shell: pwsh
+        run: |
+          $dist = Join-Path $env:RUNNER_TEMP 'mmc-wheel'
+          $venv = Join-Path $env:RUNNER_TEMP 'mmc-installed-venv'
+          New-Item -ItemType Directory -Path $dist | Out-Null
+          python -m pip wheel . --no-deps --no-build-isolation --wheel-dir $dist
+          python -m venv --copies $venv
+          $python = if ($IsWindows) { Join-Path $venv 'Scripts/python.exe' } else { Join-Path $venv 'bin/python3.12' }
+          & $python -m pip install 'cryptography>=50.0.2,<51'
+          $wheels = @(Get-ChildItem -LiteralPath $dist -Filter '*.whl')
+          if ($wheels.Count -ne 1) { throw "expected one built wheel, found $($wheels.Count)" }
+          & $python -m pip install --no-deps $wheels[0].FullName
+          Push-Location $env:RUNNER_TEMP
+          try {
+            & $python -B -m mosaic_mmc_product.installed_ci --forbid-root $env:GITHUB_WORKSPACE
+            if ($LASTEXITCODE -ne 0) { throw "installed-wheel qualification failed: $LASTEXITCODE" }
+          } finally {
+            Pop-Location
+          }

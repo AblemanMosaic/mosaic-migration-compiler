@@ -1,0 +1,14 @@
+Mosaic Migration Compiler (MMC) v0.1
+Copyright 2026 Adam Mazurk
+
+This product includes compatibility implementations, frozen semantic interfaces,
+historical qualification material, and exact predecessor identities developed during
+the MMC experimental program. Their build-era identifiers are retained where changing
+them would invalidate exact evidence or compatibility.
+
+The release-certification record structure is derived from the Apache-2.0-licensed
+Universal Constitutional Machine release-certification implementation, Copyright 2026
+Ableman Mosaic.
+
+Third-party works remain under their respective licenses. See
+THIRD-PARTY-NOTICES.md.

@@ -1,0 +1,1 @@
+{"$id":"urn:mmc:t3:clock","$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"properties":{"now":{"maximum":9223372036854775807,"minimum":0,"type":"integer"},"uncertainty":{"maximum":9223372036854775807,"minimum":0,"type":"integer"}},"required":["now","uncertainty"],"title":"MMC T3 clock","type":"object"}

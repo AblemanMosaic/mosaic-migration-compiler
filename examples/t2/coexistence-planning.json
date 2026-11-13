@@ -1,0 +1,1 @@
+{"coexistence":[{"id":"a-needs-b","left":{"state":"new","target":"actor.0"},"right":{"state":"new","target":"actor.1"},"when":null},{"id":"b-needs-a","left":{"state":"new","target":"actor.1"},"right":{"state":"new","target":"actor.0"},"when":null}],"exclusions":[],"facts":[],"orders":[],"phases":[],"schema":"mmc.planning-input.t2","search_limit":8192}

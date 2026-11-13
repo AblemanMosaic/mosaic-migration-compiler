@@ -1,0 +1,1 @@
+{"authority_effect":"NONE","effects":"APPROVED_LOCAL_SIMULATION_ONLY","id":"S1-resumable-producer","schema":"mmc.study-task.t6","task":"A legacy worker can resume after a quiet period. Revise readiness and retirement conditions without needlessly blocking safe canary work."}

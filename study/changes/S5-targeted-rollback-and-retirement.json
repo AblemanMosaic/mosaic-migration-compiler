@@ -1,0 +1,1 @@
+{"authority_effect":"NONE","effects":"APPROVED_LOCAL_SIMULATION_ONLY","id":"S5-targeted-rollback-and-retirement","schema":"mmc.study-task.t6","task":"Revert only the selected cohort without restoring revoked authority. Drain/fence old paths, account for data/consumers, and permit a fully satisfied retirement."}

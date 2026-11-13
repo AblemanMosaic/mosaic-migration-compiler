@@ -1,0 +1,49 @@
+[build-system]
+requires = []
+build-backend = "tools_t7.build_backend"
+backend-path = ["."]
+
+[project]
+name = "mosaic-migration-compiler"
+version = "0.1.0a9"
+description = "Migration compiler, bounded controller, agent workflows, and explicit integration conformance"
+requires-python = ">=3.12"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{name = "Adam Mazurk"}]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.optional-dependencies]
+operational = ["cryptography>=50.0.2,<51"]
+qualification = ["cryptography>=50.0.2,<51", "jsonschema>=4,<5", "Pillow>=13,<14"]
+
+[project.scripts]
+mmc = "mosaic_mmc.cli:main"
+mmc-t2 = "mosaic_mmc_t2.cli:main"
+mmc-t3 = "mosaic_mmc_t3.cli:main"
+mmc-agent = "mosaic_mmc_t4.cli:main"
+mmc-workbench = "mosaic_mmc_workbench.app:main"
+mmc-foundry = "mosaic_mmc_t5.cli:main"
+mmc-product = "mosaic_mmc_product.cli:main"
+mmc-installed-ci = "mosaic_mmc_product.installed_ci:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mosaic_mmc = ["data/*.json", "data/*.md"]
+mosaic_mmc_t2 = ["data/*.json", "data/*.md"]
+mosaic_mmc_t3 = ["data/*.json", "data/*.md"]
+mosaic_mmc_t4 = ["data/*.json", "data/*.md"]
+
+mosaic_mmc_t5 = ["data/*.json"]
+mosaic_mmc_product = ["data/*.json"]

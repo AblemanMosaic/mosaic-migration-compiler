@@ -1,0 +1,5 @@
+* -text
+*.zip binary
+*.whl binary
+*.png binary
+# Exact contract hashes require preserving committed bytes; Git performs no text conversion.

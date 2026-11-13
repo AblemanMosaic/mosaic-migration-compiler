@@ -1,0 +1,1 @@
+{"authority_effect":"NONE","effects":"APPROVED_LOCAL_SIMULATION_ONLY","id":"S2-persisted-reader","schema":"mmc.study-task.t6","task":"Stored objects still require an old decoder. Account for transformation, retention or isolation before reader retirement."}

@@ -1,0 +1,1 @@
+{"authority_effect":"NONE","effects":"APPROVED_LOCAL_SIMULATION_ONLY","id":"S4-late-revocation","schema":"mmc.study-task.t6","task":"Required telemetry disappears and a newer revocation arrives. Preserve knowledge floors and do not revive old positive state."}

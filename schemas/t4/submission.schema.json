@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"properties":{"notes":{"maxLength":4096,"type":"string"},"record":{"type":"object"},"schema":{"const":"mmc.agent-submission.t4"},"work_order_root":{"pattern":"^[0-9a-f]{64}$","type":"string"}},"required":["notes","record","schema","work_order_root"],"type":"object"}

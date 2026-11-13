@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+out/
+release-out/
+qualification-out/
+*.whl
+*.zip
+*.tar
+*.tar.gz
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Exact offline wheels and historical archives are distributed as release assets.
+baseline/offline/wheels/
+baseline/*.whl

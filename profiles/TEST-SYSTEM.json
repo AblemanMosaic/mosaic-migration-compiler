@@ -1,0 +1,104 @@
+{
+  "schema": "mosaic.mmc.test-system.v0.1",
+  "authority_effect": "NONE",
+  "canonical_naming": "CAPABILITY_LAYERS_1_THROUGH_6_AND_RELEASE_CONVERGENCE",
+  "compatibility_paths_are_abi": true,
+  "artifact_checks": [
+    {
+      "id": "installed-wheel-ci",
+      "purpose": "PROVE_INSTALLED_MODULE_ORIGIN_PROTOCOL_CONFORMANCE_AND_DISPOSABLE_MIGRATION_OUTSIDE_SOURCE",
+      "entry_point": "mmc-installed-ci",
+      "platforms": ["LINUX_X86_64", "WINDOWS_X86_64"],
+      "effect_class": "DISPOSABLE_TEMPORARY_SQLITE_AND_CHILD_PROCESSES_ONLY",
+      "release_qualifying": false
+    }
+  ],
+  "discovery_profile": {
+    "id": "release-qualification-offline.v1",
+    "required_environment": [
+      "MMC_QUALIFICATION_DEPENDENCY_BUNDLE",
+      "MMC_QUALIFICATION_DEPENDENCY_LOCK_ROOT",
+      "MMC_QUALIFICATION_CMBA_A4_WHEEL",
+      "MMC_QUALIFICATION_CMBA_A7_WHEEL",
+      "MMC_QUALIFICATION_DKN_RC5_WHEEL",
+      "MMC_UCM_R038_SOURCE"
+    ],
+    "rule": "TEST_DISCOVERY_IS_INVALID_OUTSIDE_THE_PROFILE_THAT_DETERMINES_OPTIONAL_MODULE_AVAILABILITY"
+  },
+  "groups": [
+    {"id": "t1", "name": "CAPABILITY_LAYER_1", "directory": "tests", "role": "SEMANTIC_FOUNDATION"},
+    {"id": "t2", "name": "CAPABILITY_LAYER_2", "directory": "tests_t2", "role": "MIGRATION_MODEL"},
+    {"id": "t3", "name": "CAPABILITY_LAYER_3", "directory": "tests_t3", "role": "OPERATIONAL_REALIZATION"},
+    {"id": "t4", "name": "CAPABILITY_LAYER_4", "directory": "tests_t4", "role": "AGENT_AND_INTERFACE_SURFACE"},
+    {"id": "t5", "name": "CAPABILITY_LAYER_5", "directory": "tests_t5", "role": "QUALIFICATION_AND_RECOVERY"},
+    {"id": "t6", "name": "CAPABILITY_LAYER_6", "directory": "tests_t6", "role": "RELEASE_AND_STUDY_BOUNDARY"},
+    {"id": "t7", "name": "RELEASE_CONVERGENCE", "directory": "tests_t7", "role": "SUCCESSOR_INTEGRATION_AND_PUBLICATION"}
+  ],
+  "lanes": [
+    {
+      "id": "smoke",
+      "purpose": "FAST_ORIENTATION_AND_CURRENT_SURFACE_CONSISTENCY",
+      "cost_class": "FAST",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_WRITES_ONLY",
+      "selectors": {"t7": ["tests_t7.test_capability_layers.", "tests_t7.test_protocol.", "tests_t7.test_surface."]}
+    },
+    {
+      "id": "public-ci",
+      "purpose": "PUBLIC_SOURCE_CROSS_PLATFORM_CONTINUOUS_INTEGRATION",
+      "cost_class": "BOUNDED",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_DATABASE_PROCESS_AND_FILESYSTEM_EFFECTS",
+      "execution_profile": "PUBLIC_CI_QUALIFICATION_EXTRA_FROM_PYPI",
+      "admitted_nonpasses": {
+        "tests_t7.test_product.ProductTests.test_exact_cmba_a7_wheel": {
+          "outcome": "SKIP",
+          "detail": "EXTERNAL_CMBA_A7_QUALIFICATION_WHEEL_NOT_SUPPLIED",
+          "reason": "PUBLIC_SOURCE_CI_DOES_NOT_CARRY_OWNER_CUSTODY_NATIVE_WHEELS"
+        }
+      },
+      "selectors": {"t3": ["tests_t3.test_controller.", "tests_t3.test_journal_capacity."], "t7": ["tests_t7.test_capability_layers.", "tests_t7.test_product.", "tests_t7.test_protocol.", "tests_t7.test_review_regressions.", "tests_t7.test_sqlite_target.", "tests_t7.test_surface.", "tests_t7.test_test_system.", "tests_t7.test_transport."]}
+    },
+    {
+      "id": "preflight",
+      "purpose": "FAIL_FAST_RELEASE_INPUT_CONTRACT_AND_HIGH_FANOUT_CHECKS",
+      "cost_class": "BOUNDED",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_WRITES_ONLY",
+      "selectors": {"t7": ["tests_t7.test_capability_layers.", "tests_t7.test_dependencies.", "tests_t7.test_evidence_scope_adapter.", "tests_t7.test_integrations.", "tests_t7.test_preservation.", "tests_t7.test_product.", "tests_t7.test_public_release.", "tests_t7.test_qualification_index.", "tests_t7.test_release_audit.", "tests_t7.test_review_regressions.", "tests_t7.test_surface."]}
+    },
+    {
+      "id": "contract",
+      "purpose": "ALL_CAPABILITY_LAYER_CONTRACTS_AND_SUCCESSOR_CORRESPONDENCE",
+      "cost_class": "EXTENDED",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_WRITES_ONLY",
+      "selectors": {"t1": ["*"], "t2": ["*"], "t3": ["*"], "t4": ["*"], "t5": ["*"], "t6": ["*"], "t7": ["tests_t7.test_capability_layers.", "tests_t7.test_preservation.", "tests_t7.test_product.", "tests_t7.test_protocol.", "tests_t7.test_surface."]}
+    },
+    {
+      "id": "integration",
+      "purpose": "ADAPTER_CONTROLLER_TRANSPORT_MIGRATION_RETIREMENT_AND_RECOVERY",
+      "cost_class": "EXTENDED",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_DATABASE_AND_PROCESS_EFFECTS",
+      "selectors": {"t7": ["tests_t7.test_adapter_safety.", "tests_t7.test_integrations.", "tests_t7.test_retirement_audit.", "tests_t7.test_sqlite_target.", "tests_t7.test_transport."]}
+    },
+    {
+      "id": "platform",
+      "purpose": "OFFLINE_DEPENDENCY_HOST_ALIAS_AND_HANDOFF_BEHAVIOR",
+      "cost_class": "EXTENDED",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_PROCESS_AND_FILESYSTEM_EFFECTS",
+      "selectors": {"t7": ["tests_t7.test_dependencies.", "tests_t7.test_dependency_security.", "tests_t7.test_native_aliases.", "tests_t7.test_platform_qualification.", "tests_t7.test_release_workflow."]}
+    },
+    {
+      "id": "publication",
+      "purpose": "PUBLIC_PROJECTION_QUALIFICATION_INDEX_EVIDENCE_SCOPE_AND_REGRESSIONS",
+      "cost_class": "BOUNDED",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_WRITES_ONLY",
+      "selectors": {"t7": ["tests_t7.test_evidence_scope_adapter.", "tests_t7.test_public_release.", "tests_t7.test_qualification_index.", "tests_t7.test_release_audit.", "tests_t7.test_review_regressions."]}
+    },
+    {
+      "id": "full",
+      "purpose": "COMPLETE_ADMITTED_TEST_DENOMINATOR_REQUIRED_FOR_RELEASE_QUALIFICATION",
+      "cost_class": "FULL",
+      "effect_class": "NO_EXTERNAL_EFFECT_DISPOSABLE_LOCAL_DATABASE_PROCESS_AND_FILESYSTEM_EFFECTS",
+      "selectors": {"t1": ["*"], "t2": ["*"], "t3": ["*"], "t4": ["*"], "t5": ["*"], "t6": ["*"], "t7": ["*"]}
+    }
+  ],
+  "release_rule": "TARGETED_LANES_ARE_DIAGNOSTIC_ONLY_FULL_IS_REQUIRED_FOR_RELEASE_QUALIFICATION"
+}
